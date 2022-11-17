@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+
+import useLocalStorage from "./com/customHooks/useLocalStorage";
 import useArray from "./com/customHooks/useArray";
 import useFetch from "./com/customHooks/useFetch";
-import useLocalStorage from "./com/customHooks/useLocalStorage";
 import useToggle from "./com/customHooks/useToggle";
 import useLogger from "./com/customHooks/useLogger";
+import useTimeout from './com/customHooks/useTimeout';
+import TimeoutCom from './com/timeoutCom';
+import DebounceCom from './com/debounceCom';
 const CustomHooksApp = () => {
   
+  //useLocalStorage
   const [storage, setStorage] = useLocalStorage('key', 'initial storage value')
+
+
 
   const [value, toggleValue] = useToggle(false);
   const [array,  push, update, remove, filter, clear]
@@ -43,7 +50,7 @@ const [variable, setVariable] = useState('');
         <h3>useToggle</h3>
         <button onClick={toggleValue}>{value.toString()}</button>
       </div>
-      <div style={{border: 'solid'}}>
+      <div>
         <h3>useLocalStorage</h3>
         <input
           type="text"
@@ -67,6 +74,10 @@ const [variable, setVariable] = useState('');
         <button onClick={() => filter((x) => x % 2 != 0)}>odd</button>
         <button onClick={() => remove(2)}>remove ind 2 </button>
       </div>
+      <DebounceCom />
+{/* 
+        <TimeoutCom />
+       */}
     </>
   );
 };
